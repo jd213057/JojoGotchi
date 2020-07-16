@@ -1,40 +1,122 @@
-html {
+@font-face {
+  src: url("src\assets\fonts\BeautifulPeoplePersonalUse-dE0g.ttf");
+  font-family: "JojoGotchi Menu";
+ }
+
+ @font-face {
+  src: url("src\assets\fonts\BeautifulPeoplePersonalUse-PYP2.ttf");
+  font-family: "JojoGotchi Text";
+ }
+
+ @font-face {
+  src: url("src\assets\fonts\LovelyCoffee-jEVeO.ttf");
+  font-family: "JojoGotchi Numbers";
+ }
+
+ @keyframes floatToLeftText {
+  from {
+    opacity: 0%;
+    margin-left: 110%;
+  }
+
+  2.5% {
+    opacity: 100%;
+  }
+
+  50% {
+    margin-left: 0%;
+  }
+
+  to {
+    opacity: 100%;
+    margin-left: -210%;
+  }
+ }
+
+ html {
   background-color: palevioletred;
 }
 
-.heart {
-  background-color: red;
-  display: inline-block;
-  height: 30px;
-  margin: 0 10px;
-  position: relative;
-  top: 0;
-  transform: rotate(-45deg);
-  width: 30px;
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  background-color: lightpink;
+}
+
+button {
+  background-color: lightpink;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 }
 
 .top-buttons {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.heart:before,
-.heart:after {
-  content: "";
-  background-color: red;
-  border-radius: 50%;
-  height: 30px;
-  position: absolute;
-  width: 30px;
+.health-bar {
+display: flex;
 }
 
-.heart:before {
-  top: -15px;
-  left: 0;
+.age {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "JojoGotchi Numbers";
+  font-size: 2em;
 }
 
-.heart:after {
-  left: 15px;
-  top: 0;
+.dicton {
+display: flex;
+flex-direction: column;
+border-top: 1px solid black;
+border-bottom: 1px solid black;
+font-family: "JojoGotchi Menu";
+font-size: 1.25em;
+}
+
+.dicton-text {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 2em;
+  font-family: "JojoGotchi Text";
+  font-size: 1.25em;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: floatToLeftText;
+  animation-duration: 50s;
+  animation-delay: 0s;
+  overflow: hidden;
+  }
+
+.jojogotchi {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.jojogotchi-img {
+  height: 20em;
+  width: auto;
+}
+
+.icon-btn {
+  height: 4em;
+  width: 4em;
+}
+
+.bottom-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

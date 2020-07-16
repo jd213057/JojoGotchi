@@ -1,23 +1,27 @@
 <html>
-  <body>
+  <div class="panel">
     <div class="top-buttons">
     <div class="health-bar">
-      <label>Santé</label>
-      <input type="range" value={{getHealth()}} disabled>
+      <img class="icon-btn" src=".//assets//images//icons8-aimer-32.png">
+      <input type="range" min=0 max=100 value={{getHealth()}} disabled>
     </div>
+    <div class="age"><b>{{getAge() + ' ' + getDaysWording()}}</b></div>
     <div class="settings">
-    <button>Parametres</button>
+    <button><img class="icon-btn" src=".//assets//images//icons8-paramètres-32.svg"></button>
   </div>
 </div>
-  <br><br>
-    <div class="heart"><img src=""></div>
-    <div class="jojogotchi-img">
-      <img src="">
+  <div class="dicton">
+    <label><b>Dicton du Jour:</b></label>
+    <div class="dicton-text">{{getDictonWording()}}</div>
+  </div>
+    <div class="jojogotchi">
+      <img id="jojogotchi" class="jojogotchi-img" [src]="getJojoGotchiImgSrc()">
     </div>
     <div class="bottom-buttons">
-      <button class="buttons">Nourrir</button>
-      <button class="buttons">Coucher</button>
-      <button class="buttons">Demander</button>
+      <button class="buttons"><img class="icon-btn" src=".//assets//images//icons8-poulet-kfc-32.png"></button>
+      <button class="buttons"><img class="icon-btn" src=".//assets//images//icons8-dormir-dans-le-lit-32.svg"></button>
+      <button class="buttons"><img class="icon-btn" src=".//assets//images//icons8-demander-un-service-32.svg"></button>
     </div>
-  </body>
+  </div>
+  <audio autoplay loop [src]="getAudioBackgorund()"></audio>
 </html>

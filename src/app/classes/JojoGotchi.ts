@@ -9,6 +9,7 @@ export class JojoGotchi {
 this.name = name;
 this.initBirthday();
 this.age = 0;
+this.health = 100;
 const today = new Date();
 this.birthday = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   }
