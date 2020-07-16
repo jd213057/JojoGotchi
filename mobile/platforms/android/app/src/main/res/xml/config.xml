@@ -10,10 +10,13 @@
     <feature name="LocalNotification">
         <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
     </feature>
+    <feature name="CDVOrientation">
+        <param name="android-package" value="cordova.plugins.screenorientation.CDVOrientation" />
+    </feature>
     <feature name="Badge">
         <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
     </feature>
-    <name>HelloCordova</name>
+    <name>JojoGotchi</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -29,6 +32,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <icon density="ldpi" src="res/android/logoJ.png" />
+    <icon density="mdpi" src="res/android/logoJ.png" />
+    <icon density="hdpi" src="res/android/logoJ.png" />
+    <icon density="xhdpi" src="res/android/logoJ.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="portrait" />

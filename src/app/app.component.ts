@@ -98,15 +98,15 @@ this.gazouilliSound.play();
 
   getJojoGotchiImgSrc(): string {
     if (this.jojoGotchi.getHealth() == 0) {
-      return './assets/images/jojoGotchiDead-heart.png';
+      return './assets/images/jojoGotchiDeadheart.png';
     }
     switch (this.jojoGotchi.getHealth() > 50) {
       case true:
-        return this.jojoGotchiBlinks ? './assets/images/jojoGotchiHappyBlinking-heart.png' :
-         './assets/images/jojoGotchiHappy-heart.png';
+        return this.jojoGotchiBlinks ? './assets/images/jojoGotchiHappyBlinkingheart.png' :
+         './assets/images/jojoGotchiHappyheart.png';
       case false:
-        return this.jojoGotchiBlinks ? './assets/images/jojoGotchiSadBlinking-heart.png' :
-         './assets/images/jojoGotchiSad-heart.png';
+        return this.jojoGotchiBlinks ? './assets/images/jojoGotchiSadBlinkingheart.png' :
+         './assets/images/jojoGotchiSadheart.png';
     }
   }
 }

@@ -1,13 +1,14 @@
 <html>
+  <meta charset="UTF-8">
   <div class="panel">
     <div class="top-buttons">
     <div class="health-bar">
-      <img class="icon-btn" src=".//assets//images//icons8-aimer-32.png">
+      <img class="icon-btn" src="./assets/images/icons8aimer32.png">
       <input type="range" min=0 max=100 value={{getHealth()}} disabled>
     </div>
     <div class="age"><b>{{getAge() + ' ' + getDaysWording()}}</b></div>
     <div class="settings">
-    <button><img class="icon-btn" src=".//assets//images//icons8-paramètres-32.svg"></button>
+    <button><img class="icon-btn" src="./assets/images/icons8paramètres32.svg"></button>
   </div>
 </div>
   <div class="dicton">
@@ -18,9 +19,9 @@
       <img id="jojogotchi" class="jojogotchi-img" [src]="getJojoGotchiImgSrc()">
     </div>
     <div class="bottom-buttons">
-      <button class="buttons"><img class="icon-btn" src=".//assets//images//icons8-poulet-kfc-32.png"></button>
-      <button class="buttons"><img class="icon-btn" src=".//assets//images//icons8-dormir-dans-le-lit-32.svg"></button>
-      <button class="buttons"><img class="icon-btn" src=".//assets//images//icons8-demander-un-service-32.svg"></button>
+      <button class="buttons"><img class="icon-btn" src="./assets/images/icons8pouletkfc32.png"></button>
+      <button class="buttons"><img class="icon-btn" src="./assets/images/icons8dormirdanslelit32.svg"></button>
+      <button class="buttons"><img class="icon-btn" src="./assets/images/icons8demanderunservice32.svg"></button>
     </div>
   </div>
   <audio autoplay loop [src]="getAudioBackgorund()"></audio>
