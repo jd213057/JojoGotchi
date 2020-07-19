@@ -45,10 +45,25 @@ label {
   background-color: lightpink;
 }
 
+span {
+  font-family: "JojoGotchi Numbers";
+  font-size: 2em;
+}
+
 button {
   background-color: lightpink;
   border: 1px solid grey;
   border-radius: 10px;
+}
+
+.secondary-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: "JojoGotchi Menu";
+  font-size: 2em;
+  font-style: bold;
+  width: 13em;
 }
 .panel {
   display: flex;
@@ -61,7 +76,7 @@ button {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .health-bar {
@@ -119,4 +134,17 @@ font-size: 1.25em;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.panel-2-buttons {
+  position: absolute;
+  top: 11%;
+  left: 20%;
+  background-color: palevioletred;
+  border: 3px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 8%;
 }

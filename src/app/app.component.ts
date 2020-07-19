@@ -8,6 +8,12 @@ import { JojoGotchi } from './classes/JojoGotchi';
 })
 export class AppComponent {
   title = 'JojoGotchi';
+  idSave: number;
+  lastTimePlayed;
+  lastFoodEaten;
+  lastTimeSlept;
+  actualTime = new Date();
+  isWindowDisplayed: boolean;
   jojoGotchi: JojoGotchi;
   jojoGotchiBlinks: boolean;
   gazouilliSound = new Audio('.\\assets\\sounds\\gazouilliSound.mp3');
@@ -15,17 +21,47 @@ export class AppComponent {
   clickSound = new Audio('.\\assets\\sounds\\clickSound.mp3');
 
   constructor() {
-    this.jojoGotchi = new JojoGotchi('JoJux');
+    this.loadLocalStorage();
   }
 
   ngOnInit(): void {
+    this.isWindowDisplayed = false;
     this.jojoGotchiBlinks = false;
     this.setClickSoundBtn();
     this.animateJojoGotchi();
     this.setJojoGotchiSound();
+    this.automaticlySave();
   }
 
-  getAudioBackgorund(): string {
+  loadLocalStorage(): void {
+    if (localStorage.getItem('jojoGotchi') === null ||
+     localStorage.getItem('jojoGotchi') === '' ||
+      localStorage.getItem('jojogotchi') === undefined) {
+      this.jojoGotchi = new JojoGotchi('JoJux');
+    } else {
+      const gameSave = JSON.parse(localStorage.getItem('gameSave'));
+      this.idSave = parseInt(gameSave.id, 10);
+      this.lastTimePlayed = gameSave.lastTimePlayed;
+      this.lastFoodEaten = gameSave.lastFoodEaten;
+      this.lastTimeSlept = gameSave.lastTimeSlept;
+      this.jojoGotchi = JSON.parse(localStorage.getItem('jojogotchi'));
+    }
+  }
+
+  automaticlySave(): void {
+    setInterval(() => {
+this.saveGame();
+    }, 30000);
+  }
+
+  saveGame(): void {
+    const newAge = this.actualTime.getTime() - this.jojoGotchi.getBirthDay().birthdayMilliSec;
+    const ageInDays = newAge % (60000 * 60 * 24);
+    this.jojoGotchi.setAge(ageInDays);
+  }
+
+
+  getAudioBackground(): string {
     return './assets/sounds/johannes-bornlof-look-to-the-stars.mp3';
   }
 
@@ -33,6 +69,14 @@ export class AppComponent {
     const buttons = document.getElementsByTagName('button');
     const buttonsArray = Array.from(buttons);
     for (const button of buttonsArray) {
+button.addEventListener('touchstart', (e) => {
+  this.clickSound.currentTime = 0;
+  this.clickSound.play();
+  button.style.backgroundColor = 'yellow';
+  setTimeout(() => {
+    button.style.backgroundColor = 'lightpink';
+  }, 200);
+});
 button.addEventListener('click', (e) => {
   this.clickSound.currentTime = 0;
   this.clickSound.play();
@@ -52,9 +96,12 @@ button.addEventListener('click', (e) => {
 
   setJojoGotchiSound(): void {
     const jojogotchi = document.getElementById('jojogotchi');
-    jojogotchi.addEventListener('click', () => {
+    jojogotchi.addEventListener('touchstart', () => {
 this.gazouilliSound.play();
     });
+    jojogotchi.addEventListener('click', () => {
+      this.gazouilliSound.play();
+          });
     jojogotchi.addEventListener('dblclick', () => {
       this.babytchoukSound.play();
           });
@@ -69,7 +116,7 @@ this.gazouilliSound.play();
   }
 
   getDaysWording(): string {
-   return this.jojoGotchi.getAge() == 0 ? 'jour' : 'jours';
+   return this.jojoGotchi.getAge() === 0 ? 'jour' : 'jours';
   }
 
   getDictonWording(): string {
@@ -92,12 +139,22 @@ this.gazouilliSound.play();
     }
   }
 
+  feedJojoGotchi(): void {
+    const feedingTime = new Date();
+    this.lastFoodEaten = feedingTime.getTime();
+      }
+
+      bedJojoGotchi(): void {
+        const sleepingTime = new Date();
+        this.lastTimeSlept = sleepingTime.getTime();
+          }
+
   setEatNotification() {
 
   }
 
   getJojoGotchiImgSrc(): string {
-    if (this.jojoGotchi.getHealth() == 0) {
+    if (this.jojoGotchi.getHealth() === 0) {
       return './assets/images/jojoGotchiDeadheart.png';
     }
     switch (this.jojoGotchi.getHealth() > 50) {
@@ -108,5 +165,15 @@ this.gazouilliSound.play();
         return this.jojoGotchiBlinks ? './assets/images/jojoGotchiSadBlinkingheart.png' :
          './assets/images/jojoGotchiSadheart.png';
     }
+  }
+
+  showWindow(): void {
+    console.log('ouvert!');
+    this.isWindowDisplayed = true;
+  }
+
+  closeWindow(): void {
+    console.log('fermé!');
+    this.isWindowDisplayed = false;
   }
 }

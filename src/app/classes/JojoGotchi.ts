@@ -1,25 +1,20 @@
 export class JojoGotchi {
 
   name: string;
-  birthday: string;
+  birthday;
   age: number;
   health: number;
 
   constructor(name) {
 this.name = name;
-this.initBirthday();
 this.age = 0;
 this.health = 100;
 const today = new Date();
-this.birthday = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+const birthdayString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+this.birthday = { birthdayString, birthdayMilliSec: today.getTime() };
   }
 
-  initBirthday(): void {
-  const today = new Date();
-  this.birthday = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-  }
-
-  getBirthDay(): string {
+  getBirthDay() {
     return this.birthday;
       }
 

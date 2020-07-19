@@ -19,10 +19,17 @@
       <img id="jojogotchi" class="jojogotchi-img" [src]="getJojoGotchiImgSrc()">
     </div>
     <div class="bottom-buttons">
-      <button class="buttons"><img class="icon-btn" src="./assets/images/icons8pouletkfc32.png"></button>
-      <button class="buttons"><img class="icon-btn" src="./assets/images/icons8dormirdanslelit32.svg"></button>
-      <button class="buttons"><img class="icon-btn" src="./assets/images/icons8demanderunservice32.svg"></button>
+      <button (touchstart)='feedJojoGotchi()' (click)='feedJojoGotchi()'><img class="icon-btn" src="./assets/images/icons8pouletkfc32.png"></button>
+      <button (touchstart)='bedJojoGotchi()' (click)='bedJojoGotchi()'><img class="icon-btn" src="./assets/images/icons8dormirdanslelit32.svg"></button>
+      <button (touchstart)="showWindow()" (click)="showWindow()"><img class="icon-btn" src="./assets/images/icons8demanderunservice32.svg"></button>
     </div>
   </div>
-  <audio autoplay loop [src]="getAudioBackgorund()"></audio>
+  <div class="panel-2-buttons" *ngIf='isWindowDisplayed'>
+    <button class="secondary-button"><img class="icon-btn" src="./assets/images/icons8machineàlaver32.svg"><span>Faire la vaiselle</span></button>
+      <button class="secondary-button"><img class="icon-btn" src="./assets/images/icons8babyyoda32.svg"><span>Baby Yoda</span></button>
+      <button class="secondary-button"><img class="icon-btn" src="./assets/images/icons8livreouvert32.svg"><span>Raconter une histoire</span></button>
+      <button class="secondary-button"><img class="icon-btn" src="./assets/images/icons8-pays-australie-32.svg"><span>Australie</span></button>
+      <button class="secondary-button" (touchstart)="closeWindow()" (click)="closeWindow()"><img class="icon-btn" src="./assets/images/icons8-fermer-la-fenêtre-32.png"><span>Fermer</span></button>
+  </div>
+  <audio autoplay loop [src]="getAudioBackground()"></audio>
 </html>
