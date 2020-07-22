@@ -3,7 +3,7 @@
   <div class="panel">
     <div class="top-buttons">
     <div class="health-bar">
-      <img class="icon-btn" src="./assets/images/icons8aimer32.png">
+      <img class="icon-btn" src="./assets/images/icons8-aimer-64.png">
       <input type="range" min=0 max=100 value={{getHealth()}} disabled>
     </div>
     <div class="age"><b>{{getAge() + ' ' + getDaysWording()}}</b></div>
@@ -19,52 +19,54 @@
       <img id="jojogotchi" class="jojogotchi-img" [src]="getJojoGotchiImgSrc()">
     </div>
     <div class="bottom-buttons">
-      <button (touchstart)='feedJojoGotchi()' (click)='feedJojoGotchi()'><img class="icon-btn" src="./assets/images/icons8-poulet-kfc-64.png"></button>
-      <button (touchstart)='bedJojoGotchi()' (click)='bedJojoGotchi()'><img class="icon-btn" src="./assets/images/icons8dormirdanslelit32.svg"></button>
-      <button (touchstart)="showWindow()" (click)="showWindow()"><img class="icon-btn" src="./assets/images/icons8demanderunservice32.svg"></button>
+      <button (click)='feedJojoGotchi()'><img class="icon-btn" src="./assets/images/icons8-poulet-kfc-64.png"></button>
+      <button (click)='bedJojoGotchi()'><img class="icon-btn" src="./assets/images/icons8dormirdanslelit32.svg"></button>
+      <button (click)="showWindow()"><img class="icon-btn" src="./assets/images/icons8demanderunservice32.svg"></button>
     </div>
   </div>
   <div class="panel-2-buttons" *ngIf='isWindowDisplayed'>
-    <button class="secondary-button" (click)="showVaiselle()" (touchstart)="showVaiselle()"><img class="panel-2-icon-btn" src="./assets/images/icons8machineàlaver32.svg"><div class="panel-2-button-text">Faire la vaiselle</div></button>
-      <button class="secondary-button" (click)="showBabyYoda()" (touchstart)="showBabyYoda()"><img class="panel-2-icon-btn" src="./assets/images/icons8babyyoda32.svg"><div class="panel-2-button-text">Baby Yoda</div></button>
-      <button class="secondary-button" (click)="showStory()" (touchstart)="showStory()"><img class="panel-2-icon-btn" src="./assets/images/icons8livreouvert32.svg"><div class="panel-2-button-text">Il était une fois</div></button>
-      <button class="secondary-button" (click)="showAustraly()" (touchstart)="showAustraly()"><img class="panel-2-icon-btn" src="./assets/images/icons8-pays-australie-32.svg"><div class="panel-2-button-text">Australie</div></button>
-      <button class="secondary-button" (touchstart)="closeWindow()" (click)="closeWindow()"><img class="panel-2-icon-btn" src="./assets/images/icons8-fermer-la-fenêtre-100.png"><div class="panel-2-button-text">Fermer</div></button>
+    <button class="secondary-button" (click)="showVaiselle()"><img class="panel-2-icon-btn" src="./assets/images/icons8machineàlaver32.svg"><div class="panel-2-button-text">Faire la vaiselle</div></button>
+      <button class="secondary-button" (click)="showBabyYoda()"><img class="panel-2-icon-btn" src="./assets/images/icons8babyyoda32.svg"><div class="panel-2-button-text">Baby Yoda</div></button>
+      <button class="secondary-button" (click)="showStory()"><img class="panel-2-icon-btn" src="./assets/images/icons8livreouvert32.svg"><div class="panel-2-button-text">Il était une fois</div></button>
+      <button class="secondary-button" (click)="showAustraly()"><img class="panel-2-icon-btn" src="./assets/images/icons8-pays-australie-32.svg"><div class="panel-2-button-text">Australie</div></button>
+      <button class="secondary-button" (click)="closeWindow()"><img class="panel-2-icon-btn" src="./assets/images/icons8-fermer-la-fenêtre-100.png"><div class="panel-2-button-text">Fermer</div></button>
   </div>
+<div></div>
+
   <div class="sub-panel vaiselle" *ngIf="this.displayVaiselle">
     <div class="vaiselle-text">
       {{this.vaiselleResponse}}
     </div>
-    <button class="sub-panel-button btn-vaiselle" (click)="hideVaiselle()" (touchstart)="hideVaiselle()">Fermer</button>
+    <button class="sub-panel-button btn-vaiselle" (click)="hideVaiselle()">Fermer</button>
   </div>
   <div class="sub-panel baby-yoda" *ngIf="this.displayBabyYoda">
     <img class="gif" [src]="getBabyYodaImgSrc(this.babyYodaPart)">
     <div class="nav-story-buttons">
-      <button class="sub-panel-button" (click)="onPreviousBabyYodaPart(this.babyYodaPart)" (touchstart)="onPreviousBabyYodaPart(this.babyYodaPart)">Precedent</button>
-      <button class="sub-panel-button" (click)="onNextBabyYodaPart(this.babyYodaPart)" (touchstart)="onNextBabyYodaPart(this.babyYodaPart)">Suivant</button>
+      <button class="sub-panel-button" (click)="onPreviousBabyYodaPart()">Precedent</button>
+      <button class="sub-panel-button" (click)="onNextBabyYodaPart()">Suivant</button>
     </div>
-    <button class="sub-panel-button btn-baby-yoda" (click)="hideBabyYoda()" (touchstart)="hideBabyYoda()">Fermer</button>
+    <button class="sub-panel-button btn-baby-yoda" (click)="hideBabyYoda()">Fermer</button>
   </div>
   <div class="sub-panel story" *ngIf="this.displayStory">
     <div class="story-text">
       {{getStoryWording(this.storyPart)}}
-      <img *ngIf="this.showStoryIllustration(this.storyPart)" class="story-illustration" src="./assets/images/storypicture.png">
-      <div *ngIf="this.showStoryIllustration(this.storyPart)" class="story-legend">{{getStorySubLegend(this.storyPart)}}</div>
+      <img *ngIf="this.showStoryIllustration()" class="story-illustration" src="./assets/images/storypicture.png">
+      <div *ngIf="this.showStoryIllustration()" class="story-legend">{{getStorySubLegend()}}</div>
     </div>
     <div class="nav-story-buttons">
-      <button class="sub-panel-button" (click)="onPreviousStoryPart()" (touchstart)="onPreviousStoryPart()">Precedent</button>
-      <button class="sub-panel-button" (click)="onNextStoryPart()" (touchstart)="onNextStoryPart()">Suivant</button>
+      <button class="sub-panel-button" (click)="onPreviousStoryPart()">Precedent</button>
+      <button class="sub-panel-button" (click)="onNextStoryPart()">Suivant</button>
     </div>
-    <button class="sub-panel-button btn-story" (click)="hideStory()" (touchstart)="hideStory()">Fermer</button>
+    <button class="sub-panel-button btn-story" (click)="hideStory()">Fermer</button>
   </div>
   <div class="sub-panel australy" *ngIf="this.displayAustraly">
     <img class="australia" [src]="getAustraliaImgSrc(this.australiaPart)">
     <div class="australia-legend">{{getAustraliaSubLegend(this.australiaPart)}}</div>
     <div class="nav-story-buttons">
-      <button class="sub-panel-button" (click)="onPreviousAustraliaPart(this.australiaPart)" (touchstart)="onPreviousAustraliaPart(this.australiaPart)">Precedent</button>
-      <button class="sub-panel-button" (click)="onNextAustraliaPart(this.australiaPart)" (touchstart)="onNextAustraliaPart(this.australiaPart)">Suivant</button>
+      <button class="sub-panel-button" (click)="onPreviousAustraliaPart()">Precedent</button>
+      <button class="sub-panel-button" (click)="onNextAustraliaPart()">Suivant</button>
     </div>
-    <button class="sub-panel-button btn-australy" (click)="hideAustraly()" (touchstart)="hideAustraly()">Fermer</button>
+    <button class="sub-panel-button btn-australy" (click)="hideAustraly()">Fermer</button>
   </div>
   <audio autoplay loop [src]="getAudioBackground()"></audio>
 </html>

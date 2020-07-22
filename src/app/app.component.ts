@@ -116,14 +116,6 @@ export class AppComponent {
     const buttons = document.getElementsByTagName('button');
     const buttonsArray = Array.from(buttons);
     for (const button of buttonsArray) {
-button.addEventListener('touchstart', (e) => {
-  this.clickSound.currentTime = 0;
-  this.clickSound.play();
-  button.style.backgroundColor = 'yellow';
-  setTimeout(() => {
-    button.style.backgroundColor = 'lightpink';
-  }, 200);
-});
 button.addEventListener('click', (e) => {
   this.clickSound.currentTime = 0;
   this.clickSound.play();
@@ -143,10 +135,6 @@ button.addEventListener('click', (e) => {
 
   setJojoGotchiSound(): void {
     const jojogotchi = document.getElementById('jojogotchi');
-    jojogotchi.addEventListener('touchstart', () => {
-      this.gazouilliSound.currentTime = 0;
-      this.gazouilliSound.play();
-    });
     jojogotchi.addEventListener('click', () => {
       this.gazouilliSound.currentTime = 0;
       this.gazouilliSound.play();
@@ -317,12 +305,12 @@ button.addEventListener('click', (e) => {
       }
   }
 
-  showStoryIllustration(part: number): boolean {
-    return part === 8;
+  showStoryIllustration(): boolean {
+    return this.storyPart === 8;
       }
 
-      getStorySubLegend(part: number): string {
-if (this.storyPart == 8) {
+      getStorySubLegend(): string {
+if (this.storyPart === 8) {
   return 'La princesse au petit pois';
 }
 return;
@@ -363,7 +351,7 @@ switch (part) {
 switch (part) {
   case 0:
   case 1:
-    return 'Brisbane, Australia'
+    return 'Brisbane, Australia';
   case 2:
     return 'Red Center, Australia';
   case 3:
