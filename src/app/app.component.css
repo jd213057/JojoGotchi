@@ -136,6 +136,11 @@ font-size: 1.25em;
   justify-content: space-evenly;
 }
 
+.panel-2-icon-btn {
+  height: 2.5em;
+  width: 2.5em;
+}
+
 .panel-2-buttons {
   position: absolute;
   top: 11%;
@@ -147,4 +152,93 @@ font-size: 1.25em;
   flex-direction: column;
   justify-content: space-around;
   padding: 8%;
+}
+
+.panel-2-button-text {
+font-size: 0.75em;
+ padding-top: 0.75em;
+ margin-left: 1em;
+}
+
+.sub-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border:  3px solid red;
+  border-radius: 1em;
+  font-family: "JojoGotchi Numbers";
+  font-size: 2em;
+  font-weight: bold;
+  width: 15.75em;
+  margin: 0em 6em 0em 6em;
+  padding: 1em 1em 1em 1em;
+}
+
+.vaiselle {
+  top: 33%;
+  background-color: lightgray;
+}
+
+.baby-yoda {
+  top: 23%;
+  background-color: lightgreen;
+}
+
+.story {
+  top: 23%;
+  background-color: coral;
+}
+
+.australy {
+  top: 18%;
+background-color: cornflowerblue;
+}
+
+.nav-story-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 0.5em;
+}
+
+.sub-panel-button {
+  font-family: "JojoGotchi Numbers";
+  font-size: 1em;
+  font-weight: bold;
+  width: 3em;
+}
+
+.btn-vaiselle {
+  margin: 0.5em 6.25em 0em 6.25em;
+}
+
+.btn-baby-yoda {
+  margin: 0.5em 6.25em 0em 6.25em;
+}
+
+.btn-story {
+  margin: 0.5em 6.25em 0em 6.25em;
+}
+
+.btn-australy {
+  margin: 0.5em 6.25em 0em 6.25em;
+}
+
+.story-illustration {
+width: 15.5em;
+height: 10.33em;
+}
+
+.brisbane {
+  width: 15.5em;
+height: 10.73em;
+}
+
+.brisbane-legend {
+  font-family: "JojoGotchi Numbers";
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
 }
