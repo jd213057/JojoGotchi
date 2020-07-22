@@ -8,7 +8,7 @@
     </div>
     <div class="age"><b>{{getAge() + ' ' + getDaysWording()}}</b></div>
     <div class="settings">
-    <button><img class="icon-btn" src="./assets/images/icons8paramètres32.svg"></button>
+    <button disabled><img class="icon-btn" src="./assets/images/icons8paramètres32.svg"></button>
   </div>
 </div>
   <div class="dicton">
@@ -38,13 +38,18 @@
     <button class="sub-panel-button btn-vaiselle" (click)="hideVaiselle()" (touchstart)="hideVaiselle()">Fermer</button>
   </div>
   <div class="sub-panel baby-yoda" *ngIf="this.displayBabyYoda">
-    <img class="gif" src="https://media.giphy.com/media/Ken6Yg5n7bYStW4JYB/giphy.gif" (mouseover)="$event.stopPropagation()">
+    <img class="gif" [src]="getBabyYodaImgSrc(this.babyYodaPart)">
+    <div class="nav-story-buttons">
+      <button class="sub-panel-button" (click)="onPreviousBabyYodaPart(this.babyYodaPart)" (touchstart)="onPreviousBabyYodaPart(this.babyYodaPart)">Precedent</button>
+      <button class="sub-panel-button" (click)="onNextBabyYodaPart(this.babyYodaPart)" (touchstart)="onNextBabyYodaPart(this.babyYodaPart)">Suivant</button>
+    </div>
     <button class="sub-panel-button btn-baby-yoda" (click)="hideBabyYoda()" (touchstart)="hideBabyYoda()">Fermer</button>
   </div>
   <div class="sub-panel story" *ngIf="this.displayStory">
     <div class="story-text">
       {{getStoryWording(this.storyPart)}}
       <img *ngIf="this.showStoryIllustration(this.storyPart)" class="story-illustration" src="./assets/images/storypicture.png">
+      <div *ngIf="this.showStoryIllustration(this.storyPart)" class="story-legend">{{getStorySubLegend(this.storyPart)}}</div>
     </div>
     <div class="nav-story-buttons">
       <button class="sub-panel-button" (click)="onPreviousStoryPart()" (touchstart)="onPreviousStoryPart()">Precedent</button>
@@ -53,8 +58,12 @@
     <button class="sub-panel-button btn-story" (click)="hideStory()" (touchstart)="hideStory()">Fermer</button>
   </div>
   <div class="sub-panel australy" *ngIf="this.displayAustraly">
-    <img class="brisbane" src="./assets/images/Brisbane.jpg">
-    <div class="brisbane-legend">Brisbane, Australia</div>
+    <img class="australia" [src]="getAustraliaImgSrc(this.australiaPart)">
+    <div class="australia-legend">{{getAustraliaSubLegend(this.australiaPart)}}</div>
+    <div class="nav-story-buttons">
+      <button class="sub-panel-button" (click)="onPreviousAustraliaPart(this.australiaPart)" (touchstart)="onPreviousAustraliaPart(this.australiaPart)">Precedent</button>
+      <button class="sub-panel-button" (click)="onNextAustraliaPart(this.australiaPart)" (touchstart)="onNextAustraliaPart(this.australiaPart)">Suivant</button>
+    </div>
     <button class="sub-panel-button btn-australy" (click)="hideAustraly()" (touchstart)="hideAustraly()">Fermer</button>
   </div>
   <audio autoplay loop [src]="getAudioBackground()"></audio>

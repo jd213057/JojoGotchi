@@ -56,6 +56,14 @@ button {
   border-radius: 10px;
 }
 
+button:hover {
+  background-color: yellow;
+}
+
+button:active {
+  background-color: yellow;
+}
+
 .secondary-button {
   display: flex;
   flex-direction: row;
@@ -65,6 +73,15 @@ button {
   font-style: bold;
   width: 13em;
 }
+
+.secondary-button:hover {
+  background-color: yellow;
+}
+
+.secondary-button:active {
+  background-color: yellow;
+}
+
 .panel {
   display: flex;
   flex-direction: column;
@@ -210,6 +227,14 @@ background-color: cornflowerblue;
   width: 3em;
 }
 
+.sub-panel-button:hover {
+background-color: yellow;
+}
+
+.sub-panel-button:active {
+  background-color: yellow;
+  }
+
 .btn-vaiselle {
   margin: 0.5em 6.25em 0em 6.25em;
 }
@@ -231,12 +256,23 @@ width: 15.5em;
 height: 10.33em;
 }
 
-.brisbane {
+.story-legend {
+  font-family: "JojoGotchi Numbers";
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.story-text {
+  text-align: center;
+}
+
+.australia {
   width: 15.5em;
 height: 10.73em;
 }
 
-.brisbane-legend {
+.australia-legend {
   font-family: "JojoGotchi Numbers";
   font-size: 1em;
   font-weight: bold;

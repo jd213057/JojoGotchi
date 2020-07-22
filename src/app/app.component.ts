@@ -17,7 +17,10 @@ export class AppComponent {
   jojoGotchiBirthday: number;
   jojoGotchiHealth: number;
   jojoGotchiBlinks: boolean;
+  jojoGotchiSleep = false;
   storyPart = 0;
+  babyYodaPart = 0;
+  australiaPart = 0;
   displayVaiselle = false;
   vaiselleResponse: string;
   displayBabyYoda = false;
@@ -27,6 +30,7 @@ export class AppComponent {
   babytchoukSound = new Audio('.\\assets\\sounds\\babytchoukSound.mp3');
   clickSound = new Audio('.\\assets\\sounds\\clickSound.mp3');
   eatSound = new Audio('.\\assets\\sounds\\eat.mp3');
+  sleepingSound = new Audio('.\\assets\\sounds\\ronflement.mp3');
 
   constructor() {
     // localStorage.clear();
@@ -140,12 +144,15 @@ button.addEventListener('click', (e) => {
   setJojoGotchiSound(): void {
     const jojogotchi = document.getElementById('jojogotchi');
     jojogotchi.addEventListener('touchstart', () => {
-this.gazouilliSound.play();
+      this.gazouilliSound.currentTime = 0;
+      this.gazouilliSound.play();
     });
     jojogotchi.addEventListener('click', () => {
+      this.gazouilliSound.currentTime = 0;
       this.gazouilliSound.play();
           });
     jojogotchi.addEventListener('dblclick', () => {
+      this.babytchoukSound.currentTime = 0;
       this.babytchoukSound.play();
           });
   }
@@ -184,6 +191,7 @@ this.gazouilliSound.play();
 
   feedJojoGotchi(): void {
     setTimeout(() => {
+      this.eatSound.currentTime = 0;
       this.eatSound.play();
     }, 2000);
     const feedingTime = new Date();
@@ -203,11 +211,23 @@ this.gazouilliSound.play();
         } else if (this.jojoGotchiHealth < 90) {
           this.jojoGotchiHealth += 10;
         }
+        if (!this.jojoGotchiSleep) {
+          this.jojoGotchiSleep = true;
+          this.sleepingSound.play();
+          this.sleepingSound.loop = true;
+        } else if (this.jojoGotchiSleep) {
+          this.jojoGotchiSleep = false;
+          this.sleepingSound.pause();
+          this.sleepingSound.currentTime = 0;
+        }
           }
 
   getJojoGotchiImgSrc(): string {
     if (this.jojoGotchiHealth === 0) {
       return './assets/images/jojoGotchiDeadheart.png';
+    }
+    if (this.jojoGotchiSleep) {
+      return './assets/images/jojoGotchiHappyBlinkingheart.png';
     }
     switch (this.jojoGotchiHealth > 50) {
       case true:
@@ -220,11 +240,13 @@ this.gazouilliSound.play();
   }
 
   showWindow(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.isWindowDisplayed = true;
   }
 
   closeWindow(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.isWindowDisplayed = false;
   }
@@ -235,89 +257,186 @@ this.gazouilliSound.play();
     '  a été crée. Un technicien assermenté vous contactera dans les plus brefs délais.';
   }
 
+  getBabyYodaImgSrc(part: number): string {
+    switch (part) {
+      case 0:
+        return 'https://media.giphy.com/media/Ken6Yg5n7bYStW4JYB/giphy.gif';
+      case 1:
+        return 'https://media.giphy.com/media/ZFi2wFRs3lBvYNglWk/giphy.gif';
+      case 2:
+        return 'https://media.giphy.com/media/U4q2Ej2UEdq5mzpUCB/giphy.gif';
+      case 3:
+        return 'https://media.giphy.com/media/kI2hsMDS4zjK7Fbif8/giphy.gif';
+      case 4:
+        return 'https://media.giphy.com/media/KziKCpvrGngHbYjaUF/giphy.gif';
+    }
+  }
+
+  onPreviousBabyYodaPart(): void {
+    this.clickSound.currentTime = 0;
+    this.clickSound.play();
+    if (this.babyYodaPart >= 1) {
+      this.babyYodaPart --;
+    }
+  }
+
+  onNextBabyYodaPart(): void {
+    this.clickSound.currentTime = 0;
+    this.clickSound.play();
+    if (this.babyYodaPart <= 3) {
+      this.babyYodaPart ++;
+    }
+  }
+
   getStoryWording(part: number): string {
     switch (part) {
       case 0:
-      return 'Il était une fois un prince qui voulait épouser une princesse, mais une vraie princesse. Il fit le tour de la Terre pour en trouver une mais il y avait toujours quelque chose qui clochait ; des princesses, il n\'en manquait pas, mais étaient-elles de vraies princesses ?';
+        return 'La Princesse au petit pois';
       case 1:
-        return 'C\'était difficile à apprécier ; toujours une chose ou l\'autre ne lui semblait pas parfaite. Il rentra chez lui tout triste, il aurait tant voulu rencontrer une véritable princesse.';
+      return 'Il était une fois un prince qui voulait épouser une princesse, mais une vraie princesse. Il fit le tour de la Terre pour en trouver une mais il y avait toujours quelque chose qui clochait ; des princesses, il n\'en manquait pas, mais étaient-elles de vraies princesses ?';
       case 2:
-        return 'Un soir, par un temps affreux, éclairs et tonnerre, cascades de pluie que c\'en était effrayant, on frappa à la porte de la ville et le vieux roi lui-même alla ouvrir. C\'était une princesse qui était là, dehors. Mais grands dieux ! de quoi avait-elle l\'air dans cette pluie, par ce temps !';
+        return 'C\'était difficile à apprécier ; toujours une chose ou l\'autre ne lui semblait pas parfaite. Il rentra chez lui tout triste, il aurait tant voulu rencontrer une véritable princesse.';
       case 3:
-        return 'L\'eau coulait de ses cheveux et de ses vêtements, entrait par la pointe de ses chaussures et ressortait par le talon… et elle prétendait être une véritable princesse !';
+        return 'Un soir, par un temps affreux, éclairs et tonnerre, cascades de pluie que c\'en était effrayant, on frappa à la porte de la ville et le vieux roi lui-même alla ouvrir. C\'était une princesse qui était là, dehors. Mais grands dieux ! de quoi avait-elle l\'air dans cette pluie, par ce temps !';
       case 4:
-        return '« Nous allons bien voir ça », pensait la vieille reine, mais elle ne dit rien. Elle alla dans la chambre à coucher, retira toute la literie et mit un petit pois au fond du lit ; elle prit ensuite vingt matelas qu\'elle empila sur le petit pois et, par-dessus, elle mit encore vingt édredons en plumes d\'eider.';
+        return 'L\'eau coulait de ses cheveux et de ses vêtements, entrait par la pointe de ses chaussures et ressortait par le talon… et elle prétendait être une véritable princesse !';
       case 5:
-        return 'C\'est là-dessus que la princesse devait coucher cette nuit-là. Au matin, on lui demanda comment elle avait dormi.';
+        return '« Nous allons bien voir ça », pensait la vieille reine, mais elle ne dit rien. Elle alla dans la chambre à coucher, retira toute la literie et mit un petit pois au fond du lit ; elle prit ensuite vingt matelas qu\'elle empila sur le petit pois et, par-dessus, elle mit encore vingt édredons en plumes d\'eider.';
       case 6:
-        return '« Affreusement mal, répondit-elle, je n\'ai presque pas fermé l\'oeil de la nuit. Dieu sait ce qu\'il y avait dans ce lit. J\'étais couchée sur quelque chose de si dur que j\'en ai des bleus et des noirs sur tout le corps ! C\'est terrible ! »';
+        return 'C\'est là-dessus que la princesse devait coucher cette nuit-là. Au matin, on lui demanda comment elle avait dormi.';
       case 7:
-        return '';
+        return '« Affreusement mal, répondit-elle, je n\'ai presque pas fermé l\'oeil de la nuit. Dieu sait ce qu\'il y avait dans ce lit. J\'étais couchée sur quelque chose de si dur que j\'en ai des bleus et des noirs sur tout le corps ! C\'est terrible ! »';
       case 8:
-        return 'Alors ils reconnurent que c\'était une vraie princesse puisque, à travers les vingt matelas et les vingt édredons en plumes d\'eider, elle avait senti le petit pois. Une peau aussi sensible ne pouvait être que celle d\'une authentique princesse.';
+        return '';
       case 9:
-        return 'Le prince la prit donc pour femme, sûr maintenant d\'avoir trouvé une vraie princesse, et le petit pois fut exposé dans le cabinet des trésors d\'art, où l\'on peut encore le voir si personne ne l\'a emporté. Et ceci est une vraie histoire.';
+        return 'Alors ils reconnurent que c\'était une vraie princesse puisque, à travers les vingt matelas et les vingt édredons en plumes d\'eider, elle avait senti le petit pois. Une peau aussi sensible ne pouvait être que celle d\'une authentique princesse.';
       case 10:
-      return '------------------------------------FIN--------------------------------';
+        return 'Le prince la prit donc pour femme, sûr maintenant d\'avoir trouvé une vraie princesse, et le petit pois fut exposé dans le cabinet des trésors d\'art, où l\'on peut encore le voir si personne ne l\'a emporté. Et ceci est une vraie histoire.';
+      case 11:
+      return '----------------------------------FIN----------------------------------';
       }
   }
 
+  showStoryIllustration(part: number): boolean {
+    return part === 8;
+      }
+
+      getStorySubLegend(part: number): string {
+if (this.storyPart == 8) {
+  return 'La princesse au petit pois';
+}
+return;
+      }
+
+      onPreviousStoryPart(): void {
+        this.clickSound.currentTime = 0;
+        this.clickSound.play();
+        if (this.storyPart >= 1) {
+          this.storyPart --;
+        }
+      }
+
+      onNextStoryPart(): void {
+        this.clickSound.currentTime = 0;
+        this.clickSound.play();
+        if (this.storyPart <= 10) {
+          this.storyPart ++;
+        }
+      }
+
+  getAustraliaImgSrc(part: number): string {
+switch (part) {
+  case 0:
+    return './assets/images/Brisbane.jpg';
+  case 1:
+    return './assets/images/brisbane2.jpg';
+  case 2:
+    return './assets/images/redcenter.jpg';
+  case 3:
+    return './assets/images/heartreef.png';
+  case 4:
+    return './assets/images/hamiltonisland.jpg';
+}
+  }
+
+  getAustraliaSubLegend(part: number): string {
+switch (part) {
+  case 0:
+  case 1:
+    return 'Brisbane, Australia'
+  case 2:
+    return 'Red Center, Australia';
+  case 3:
+    return 'Heart Reef, Australia';
+  case 4:
+    return 'Hamilton Island, Australia';
+}
+  }
+
+  onPreviousAustraliaPart(): void {
+    this.clickSound.currentTime = 0;
+    this.clickSound.play();
+    if (this.australiaPart >= 1) {
+      this.australiaPart --;
+    }
+  }
+
+  onNextAustraliaPart(): void {
+    this.clickSound.currentTime = 0;
+    this.clickSound.play();
+    if (this.australiaPart <= 3) {
+      this.australiaPart ++;
+    }
+  }
+
   showVaiselle(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayVaiselle = true;
   }
 
   hideVaiselle(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayVaiselle = false;
   }
 
   showBabyYoda(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayBabyYoda = true;
   }
 
   hideBabyYoda(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayBabyYoda = false;
+    this.babyYodaPart = 0;
   }
 
   showStory(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayStory = true;
   }
 
   hideStory(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayStory = false;
     this.storyPart = 0;
   }
 
-  showStoryIllustration(part: number): boolean {
-return part === 7;
-  }
-
-  onPreviousStoryPart(): void {
-    this.clickSound.play();
-    if (this.storyPart >= 1) {
-      this.storyPart --;
-    }
-  }
-
-  onNextStoryPart(): void {
-    this.clickSound.play();
-    if (this.storyPart <= 9) {
-      this.storyPart ++;
-    }
-  }
-
   showAustraly(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayAustraly = true;
   }
 
   hideAustraly(): void {
+    this.clickSound.currentTime = 0;
     this.clickSound.play();
     this.displayAustraly = false;
+    this.australiaPart = 0;
   }
 }

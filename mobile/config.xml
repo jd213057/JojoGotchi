@@ -25,6 +25,16 @@
          <icon  src="res/android/logoJ.png"  density="mdpi" />
          <icon  src="res/android/logoJ.png"  density="hdpi" />
          <icon  src="res/android/logoJ.png" density="xhdpi" />
+             <splash src="res/screen/android/splash-land-hdpi.png" density="land-hdpi"/>
+    <splash src="res/screen/android/splashscreen.png" density="land-ldpi"/>
+    <splash src="res/screen/android/splashscreen.png" density="land-mdpi"/>
+    <splash src="res/screen/android/splashscreen.png" density="land-xhdpi"/>
+
+    <splash src="res/screen/android/splashscreen.png" density="port-hdpi"/>
+    <splash src="res/screen/android/splashscreen.png" density="port-ldpi"/>
+    <splash src="res/screen/android/splashscreen.png" density="port-mdpi"/>
+    <splash src="res/screen/android/splashscreen.png" density="port-xhdpi"/>
+    <preference name="SplashScreenDelay" value="5000" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
